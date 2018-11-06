@@ -1,0 +1,183 @@
+import java.util.Random;
+import java.util.Scanner;
+
+
+public class Locations {
+    static Scanner in = new Scanner(System.in);
+    public static int n = in.nextInt();
+    public static int m = in.nextInt();
+    public static int[][]  places = new int[m][2];
+    public static void main (String[] args) {
+            //init scanner 
+            
+    
+            //init amount of vertices
+            
+    
+            //make places voor edges.
+            int[] connected = new int[n];
+            int[] connector = new int[n];
+            // get random connections for the edges
+            for( int i = 0; i < n; i ++) {
+            //get random number
+            Random rand = new Random();
+                
+            // get random places
+            connected[i] = (int)(Math.random() * ((m - 1) + 1)) + 1;
+            // get new random for new place
+            int h = connected[i];
+            int k = connected[i];
+                while(h == k) {
+                
+                
+                
+                rand = new Random();
+                h = (int)(Math.random() * ((m - 1) + 1)) + 1;
+                
+                
+            }
+            connector[i] = h;
+        }
+        // print out connections for checking
+        for( int i = 0; i < connected.length; i ++) { 
+            
+            
+            System.out.print( connected[i] );
+            System.out.println( " "+connector[i]);    
+        }
+        
+        // init some more stuff
+        int[][] places = new int[m][2];
+        
+        
+        
+        
+        //Start given them coordinates based on edges
+        for ( int i = 0; i < places.length; i++) {
+            // this is to cycly through all the places.
+            // check if places[i][] is connected to any other.
+            int connectedToX = checkerX(i, connected, connector);
+            int connectedToY = checkerY(i, connected, connector);
+            int Maxdistance = 300;
+            if (connectedToX > 0 || places[connectedToX][0] > 0 || places[connectedToY][1] > 0 || connectedToY > 0) {
+                
+                int Xmax = places[connectedToX][0] + Maxdistance;
+                int Xmin = places[connectedToX][0]-Maxdistance;
+                
+                int Ymax = places[connectedToY][1]+Maxdistance;
+                int Ymin = places[connectedToY][1] -Maxdistance;
+                
+                
+                System.out.print(Xmax);
+                System.out.println("  "+Xmin);
+                System.out.print(Ymax);
+                System.out.println("  "+Ymin);
+                
+                if (places[connectedToX][0] + Maxdistance > 1000){
+                    Xmax = places[connectedToX][0] -Maxdistance;
+                }
+                    
+                if (places[connectedToX][0]-Maxdistance < 0){
+                    Xmin = places[connectedToX][0] +Maxdistance;
+                }  
+                
+                if (places[connectedToY][1]+Maxdistance > 1000){
+                    Ymax = places[connectedToY][1] -Maxdistance;
+                }
+                
+                if (places[connectedToY][1] -Maxdistance < 0){
+                    Ymin = places[connectedToY][1] +Maxdistance;
+                }
+                 
+                Random rand = new Random();
+            
+                
+                places[i][0] = (int)(Math.random() * ((Xmax - Xmin) + 1)) + Xmin;
+                places[i][1] = (int)(Math.random() * ((Ymax - Ymin) + 1)) + Ymin;
+        
+            }
+        
+            
+                else {
+                     
+                     //get random number
+                     Random rand = new Random();
+            
+                     // get random places
+                     places[i][0] = (int)(Math.random() * ((1000 - 1) + 1)) + 1;
+                     places[i][1] = (int)(Math.random() * ((1000 - 1) + 1)) + 1;
+                }
+            //System.out.println(places[connectedTo][0]);
+            //System.out.println(places[connectedTo][1]);
+        
+        
+        
+        
+        }
+        
+        for( int i = 0; i < places.length; i ++) {
+                System.out.print(places[i][0]);
+                System.out.println(" " + places[i][1]);
+                 
+        }
+    }
+    
+    public static int checkerX(int place, int[] connected, int[] connector) {
+        int connections =  0;
+        
+        for ( int i = 0; i < n; i++) {
+            
+            
+                
+                if(connected[i] == place){
+                    
+                    connections = places[connector[i]- 1][0];
+                    return connections;
+                }
+                
+            
+                
+                if( connector[i] == place){                    
+                    connections = places[connected[i]- 1][0];
+                    return connections;
+                }
+                
+                return connections;
+                
+            
+        }
+        return connections;
+        
+    }
+    
+    public static int checkerY(int place, int[] connected, int[] connector) {
+        int connections =  0;
+        
+        for ( int i = 0; i < n; i++) {
+            
+            
+                
+                if(connected[i] == place){
+                    
+                    connections = places[connector[i]][1];
+                    return connections;
+                }
+                
+                
+                
+            
+            
+                
+                if( connector[i] == place){                    
+                    connections = places[connected[i]][1];
+                    return connections;
+                }
+                
+                return connections;
+                
+            
+        }
+        return connections;
+        
+    }
+}
