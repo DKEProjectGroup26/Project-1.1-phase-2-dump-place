@@ -17,6 +17,12 @@ public class Locations {
             //make places voor edges.
             int[] connected = new int[n];
             int[] connector = new int[n];
+            
+            
+            
+            
+            
+            
             // get random connections for the edges
             for( int i = 0; i < n; i ++) {
             //get random number
@@ -36,8 +42,29 @@ public class Locations {
                 
                 
             }
+            
             connector[i] = h;
+            
+            for( int t = 0; t < i; t++){
+                
+                while (connector[t] == connector[i] && connected[t] == connected[i] ){
+                    
+                    rand = new Random();
+                    connected[i] = (int)(Math.random() * ((m - 1) + 1)) + 1;
+                    
+                }
+                
+                
+            }
+                
+            
         }
+        
+        
+        
+        
+        
+        
         // print out connections for checking
         for( int i = 0; i < connected.length; i ++) { 
             
@@ -59,7 +86,7 @@ public class Locations {
             int connectedToX = checkerX(i, connected, connector);
             int connectedToY = checkerY(i, connected, connector);
             int Maxdistance = 300;
-            if (connectedToX > 0 || places[connectedToX][0] > 0 || places[connectedToY][1] > 0 || connectedToY > 0) {
+            if (connectedToX > 0  && connectedToY > 0) {
                 
                 int Xmax = places[connectedToX][0] + Maxdistance;
                 int Xmin = places[connectedToX][0]-Maxdistance;
@@ -71,17 +98,18 @@ public class Locations {
                 System.out.print(Xmax);
                 System.out.println("  "+Xmin);
                 System.out.print(Ymax);
-                System.out.println("  "+Ymin);
+                System.out.println("  "+Ymin + "\n");
+                
                 
                 if (places[connectedToX][0] + Maxdistance > 1000){
                     Xmax = places[connectedToX][0] -Maxdistance;
                 }
                     
-                if (places[connectedToX][0]-Maxdistance < 0){
+                if (places[connectedToX][0]- Maxdistance < 0){
                     Xmin = places[connectedToX][0] +Maxdistance;
                 }  
                 
-                if (places[connectedToY][1]+Maxdistance > 1000){
+                if (places[connectedToY][1]+ Maxdistance > 1000){
                     Ymax = places[connectedToY][1] -Maxdistance;
                 }
                 
@@ -91,6 +119,11 @@ public class Locations {
                  
                 Random rand = new Random();
             
+                System.out.print(Xmax);
+                System.out.println("  "+Xmin);
+                System.out.print(Ymax);
+                System.out.println("  "+Ymin);
+                
                 
                 places[i][0] = (int)(Math.random() * ((Xmax - Xmin) + 1)) + Xmin;
                 places[i][1] = (int)(Math.random() * ((Ymax - Ymin) + 1)) + Ymin;
@@ -109,6 +142,9 @@ public class Locations {
                 }
             //System.out.println(places[connectedTo][0]);
             //System.out.println(places[connectedTo][1]);
+        
+        
+        
         
         
         
@@ -135,6 +171,9 @@ public class Locations {
                     return connections;
                 }
                 
+                
+                
+            
             
                 
                 if( connector[i] == place){                    
@@ -180,4 +219,19 @@ public class Locations {
         return connections;
         
     }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 }
