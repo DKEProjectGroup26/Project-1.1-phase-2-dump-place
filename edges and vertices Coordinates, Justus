@@ -88,10 +88,11 @@ public class Locations {
         for ( int i = 0; i < m; i++) {
             // this is to cycly through all the places.
             // check if places[i][] is connected to any other.
-            int connectedToX = checkerX(i, connected, connector);
-            int connectedToY = checkerY(i, connected, connector);
+            int connectedToX = checkerX(i+1, connected, connector);
+            int connectedToY = checkerY(i+1, connected, connector);
             int Maxdistance = 300;
-            //System.out.println(connectedToX);
+            System.out.println(connectedToX);
+            System.out.println(connectedToY);
             if (connectedToX > 0  && connectedToY > 0) {
                 
                 int Xmax = places[connectedToX][0] + Maxdistance;
@@ -126,9 +127,9 @@ public class Locations {
                 Random rand = new Random();
             
                 System.out.print(Xmax);
-                //System.out.println("  "+Xmin);
-                //System.out.print(Ymax);
-                //System.out.println("  "+Ymin);
+                System.out.println("  "+Xmin);
+                System.out.print(Ymax);
+                System.out.println("  "+Ymin);
                 
                 
                 places[i][0] = (int)(Math.random() * ((Xmax - Xmin) + 1)) + Xmin;
@@ -166,7 +167,7 @@ public class Locations {
     
     public static int checkerX(int place, int[] connected, int[] connector) {
         int connections =  0;
-        System.out.println(connected[1]); 
+        //System.out.println(connected[1]); 
         for ( int i = 0; i < n; i++) {
             
             
@@ -177,7 +178,6 @@ public class Locations {
                     
                 }
                 
-            
                 
                 if( connector[i] == place){                    
                     connections = places[connected[i]- 1][0];
@@ -203,6 +203,7 @@ public class Locations {
                 if(connected[i] == place){
                     
                     connections = places[connector[i]-1][1];
+                    System.out.println( "XD"); 
                     return connections;
                 }
                 
@@ -213,7 +214,7 @@ public class Locations {
                     return connections;
                 }
                 
-                return connections;
+                
                 
             
         }
