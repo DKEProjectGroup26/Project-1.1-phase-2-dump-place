@@ -14,12 +14,12 @@ public class Locations {
         // get random connections for the edges
         for( int i = 0; i < n; i ++) {
 			// get random places
-			connected[i] = (int)(Math.random() * ((m - 1) + 1)) + 1;
+			connected[i] = (int) (Math.random() * ((m - 1) + 1)) + 1;
 			// get new random for new place
 			int h = connected[i];
 			int k = connected[i];
 			while(h == k)
-				h = (int)(Math.random() * ((m - 1) + 1)) + 1;
+				h = (int) (Math.random() * ((m - 1) + 1)) + 1;
             
 			connector[i] = h;
             
@@ -51,10 +51,10 @@ public class Locations {
 	        if (connectedToX > 0  && connectedToY > 0) {
             
 	            int Xmax = places[connectedToX][0] + Maxdistance;
-	            int Xmin = places[connectedToX][0]-Maxdistance;
+	            int Xmin = places[connectedToX][0] - Maxdistance;
             
-	            int Ymax = places[connectedToY][1]+Maxdistance;
-	            int Ymin = places[connectedToY][1] -Maxdistance;
+	            int Ymax = places[connectedToY][1] + Maxdistance;
+	            int Ymin = places[connectedToY][1] - Maxdistance;
             
             
 	            //System.out.print(Xmax);
