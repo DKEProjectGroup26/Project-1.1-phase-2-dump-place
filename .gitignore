@@ -1,6 +1,9 @@
 # Folder with all the .class files in it
 compiled/
 
+# mac stuff
+.DS_STORE
+
 # other stuff is just in case
 
 # Compiled class file
